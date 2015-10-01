@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.text.Text;
 
 import carprov.dashboard.api.App;
+import carprov.dashboard.api.ImageHelper;
 
 public class MusicApp implements App {
 
@@ -19,7 +20,8 @@ public class MusicApp implements App {
 
     @Override
     public Node getDashboardIcon() {
-        return null;
+        return new Text("Music App");
+        //return ImageHelper.getImage(this, "music.png");
     }
 
     @Override
