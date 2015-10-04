@@ -5,8 +5,8 @@ import javafx.scene.image.ImageView;
 
 public class ImageHelper {
    
-   public static ImageView getImage(Object loadingContext, String name) {
-         Image image = new Image(loadingContext.getClass().getResourceAsStream(name));
+   public static ImageView getImage(Class<?> loadingContext, String name) {
+         Image image = new Image(loadingContext.getClassLoader().getResourceAsStream("/" + name));
          ImageView view = new ImageView(image);
          view.setPreserveRatio(true);
          return view;
