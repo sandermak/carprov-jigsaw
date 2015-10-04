@@ -5,4 +5,5 @@ module carprov.dashboard.jfx {
    requires javafx.swing;
 
    uses carprov.dashboard.api.App;
+   provides carprov.dashboard.api.App with carprov.dashboard.jfx.ConfigurationApp;
 }
