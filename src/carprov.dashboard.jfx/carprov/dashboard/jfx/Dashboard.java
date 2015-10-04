@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -78,12 +79,10 @@ public class Dashboard {
   }
 
    private static Node getTopBar() {
-      // ImageView homeImg = ImageHelper.getImage(Dashboard.class, "home.png");
-
-      //homeImg.setFitHeight(40);
-      //homeImg.setOnMouseClicked(event -> startDashboard());
-      Text homeText = new Text("Home");
-      homeText.setOnMouseClicked(event -> startDashboard());
+      ImageView homeImg = ImageHelper.getImage(Dashboard.class.getResourceAsStream("/home.png"));
+      homeImg.setFitHeight(40);
+      homeImg.setOnMouseClicked(event -> startDashboard());
+      
 
       titleText = new Text(DASHBOARD_TITLE);
       titleText.setFont(new Font("Open Sans", 22));
@@ -93,7 +92,7 @@ public class Dashboard {
       pane.setPadding(new Insets(10));
       pane.setStyle("-fx-background-color: #222222;");
       pane.setLeft(titleText);
-      pane.setRight(homeText);
+      pane.setRight(homeImg);
       return pane;
   }
 }

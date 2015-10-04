@@ -3,7 +3,7 @@ mkdir mods
 
 # Copy resources
 cd src
-rsync -R $(find . -name *.png) ../mods
+rsync -R $(find . -name *.png -o -name *.gif) ../mods
 cd -
 
 # Compile modules

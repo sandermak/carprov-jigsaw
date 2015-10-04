@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import carprov.dashboard.api.App;
+import carprov.dashboard.api.ImageHelper;
 
 public class NavigationApp implements App {
       
@@ -33,28 +34,27 @@ public class NavigationApp implements App {
    
    @Override
    public Node getDashboardIcon() {
-      return new Text("Navigation App");
-      //return DashboardHelper.getImage(bundleContext, "maps");
+      return ImageHelper.getImage(getClass().getResourceAsStream("/maps.png"));
    }
 
    @Override
    public Node getMainApp() {
-       Text text = new Text("Destination: ");
-       text.setFont(new Font("Open Sans", 18));
-        text.setFill(Color.AZURE);
-        VBox box = new VBox(text);
-        box.setPadding(new Insets(2));
-        box.setBackground(new Background(new BackgroundFill(Color.web("#444444"), new CornerRadii(3), Insets.EMPTY)));
-       TextField dest = new TextField("JavaZone 2015!");
-        FlowPane flowPane = new FlowPane(box, dest);
-        flowPane.setPadding(new Insets(30));
-       // Image image = DashboardHelper.getImage(bundleContext, "map").getImage();
-       // flowPane.setBackground(
-       //         new Background(
-       //                 new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, 
-       //                         new BackgroundSize(100, 100,true, true, false, true))));
+      Text text = new Text("Destination: ");
+      text.setFont(new Font("Open Sans", 18));
+      text.setFill(Color.AZURE);
+      VBox box = new VBox(text);
+      box.setPadding(new Insets(2));
+      box.setBackground(new Background(new BackgroundFill(Color.web("#444444"), new CornerRadii(3), Insets.EMPTY)));
+      TextField dest = new TextField("J-Fall 2015!");
+      FlowPane flowPane = new FlowPane(box, dest);
+      flowPane.setPadding(new Insets(30));
+      Image image = ImageHelper.getImage(getClass().getResourceAsStream("/map.png")).getImage();
+      flowPane.setBackground(
+          new Background(
+                new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, 
+                      new BackgroundSize(100, 100,true, true, false, true))));
        
-        return flowPane;
+      return flowPane;
    }
 
 }
