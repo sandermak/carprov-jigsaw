@@ -11,6 +11,9 @@ import javafx.scene.text.Text;
 import carprov.dashboard.api.App;
 import carprov.dashboard.api.ImageHelper;
 
+import java.lang.reflect.Layer;
+import java.lang.reflect.Module;
+
 public class ConfigurationApp implements App {
    
    @Override
@@ -33,19 +36,21 @@ public class ConfigurationApp implements App {
       FlowPane flowPane = new FlowPane(Orientation.VERTICAL);
       flowPane.setAlignment(Pos.CENTER);
       
-      // for(Bundle b: bundleContext.getBundles()) {
-      //    if(b.getSymbolicName().startsWith("carprov"))
-      //       flowPane.getChildren().add(getBundleVersion(b));
-      // }
+      Layer layer = Layer.boot();
+      for (Module m: layer.modules()) {
+        if(m.getName().startsWith("carprov")) {
+           flowPane.getChildren().add(getModuleDescription(m));
+        }
+      }
       
       return flowPane;
    }
 
-   // private Node getBundleVersion(Bundle b) {
-   //    Text text = new Text(b.getSymbolicName() + ": " + b.getHeaders().get("Bundle-Version") + " (" + new Date(b.getLastModified())+ ")");
-   //    text.setFont(new Font("Open Sans", 18));
-   //    text.setFill(Color.AZURE);
-   //    return text;
-   // }
+   private Node getModuleDescription(Module m) {
+      Text text = new Text(m.getName() + ": " + m.getDescriptor().version().map(Object::toString).orElse("no version specified"));
+      text.setFont(new Font("Open Sans", 18));
+      text.setFill(Color.AZURE);
+      return text;
+   }
 
 }
